@@ -119,11 +119,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = canvas.getContext('2d');
 
       function resize() {
-        canvas.width  = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+        const w = canvas.offsetWidth || canvas.clientWidth || 0;
+        const h = canvas.offsetHeight || canvas.clientHeight || 0;
+        if (w && h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
       }
+
+      // Use ResizeObserver to catch when canvas becomes visible / sized (works with SPA)
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(() => resize());
+        ro.observe(canvas);
+        // keep observer reference to avoid GC (not stored currently)
+      } else {
+        // Fallback: listen to window resize
+        window.addEventListener('resize', resize);
+      }
+
+      // initial resize attempt
       resize();
-      window.addEventListener('resize', resize);
 
       const W = () => canvas.width;
       const H = () => canvas.height;

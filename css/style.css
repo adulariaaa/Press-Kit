@@ -5,6 +5,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
+@font-face {
+  font-family: "Akira";
+  src: url("/fonts/AkiraExpanded.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* ── TOKENS ── */
 :root {
   --black:   #000000;
@@ -21,8 +28,8 @@
   --border2: #333333;
   --hi:      #ffffff;
   --dim:     #555555;
-  --cond:    'Barlow Condensed', 'Arial Narrow', sans-serif;
-  --mono:    'Space Mono', monospace;
+  --cond:    'Akira', sans-serif;
+  --mono:    'Akira', sans-serif;
   --ease:    cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -128,7 +135,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
   display: flex;
   align-items: center;
   padding: 0 24px;
-  font-family: var(--cond);
+  font-family: "Akira", sans-serif;
   font-weight: 900;
   font-size: 22px;
   letter-spacing: 0.18em;
@@ -228,7 +235,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
 }
 
 .hero-eyebrow {
-  font-family: var(--mono);
+  font-family: "Akira", sans-serif;
   font-size: 9px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -496,6 +503,25 @@ body.cursor-hover #cursor::after  { height: 32px; }
   border-right: 1px solid var(--border);
 }
 
+/* QUOTE SNIPPET */
+.quote-snippet {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+}
+
+.quote-snippet p {
+  font-family: var(--cond);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--grey-8);
+  max-width: 440px;
+}
+
 /* SOUND PROFILE */
 .sound-profile {
   padding: 28px 32px;
@@ -669,13 +695,57 @@ body.cursor-hover #cursor::after  { height: 32px; }
 }
 
 /* ─────────────────────────────────────────────
+   RELEASES PHOTO SECTION
+───────────────────────────────────────────── */
+
+.release-photo-section {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.release-photo {
+  position: absolute;
+  inset: 0;
+  background-image: url('../IMG_4680.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.35) contrast(1.4) grayscale(1);
+}
+
+.release-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--black) 100%);
+}
+
+.release-photo-text {
+  position: absolute;
+  bottom: 40px; left: 32px;
+  z-index: 2;
+}
+
+.release-photo-text h1 {
+  font-family: var(--cond);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(40px, 8vw, 110px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+/* ─────────────────────────────────────────────
    RELEASES TABLE
 ───────────────────────────────────────────── */
 .rel-table { width: 100%; }
 
 .rel-row {
   display: grid;
-  grid-template-columns: 44px 1fr 110px 80px 60px 36px;
+  grid-template-columns: minmax(320px, 4.5fr) minmax(120px, 1.2fr) minmax(95px, 1fr) 46px;
+  column-gap: 24px;
   align-items: center;
   padding: 0 32px;
   height: 56px;
@@ -709,7 +779,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
   font-size: 8px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--grey-5);
+  color: var(--white);
   height: 32px;
   cursor: default;
 }
@@ -717,13 +787,78 @@ body.cursor-hover #cursor::after  { height: 32px; }
 .rel-head:hover { background: transparent; }
 .rel-head::before { display: none; }
 
-.r-num  { font-family:var(--mono); font-size:9px; color:var(--grey-4); }
-.r-title { font-family:var(--cond); font-weight:700; font-size:17px; text-transform:uppercase; letter-spacing:0.04em; color:var(--grey-8); transition:color 0.12s; }
+.r-title {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--grey-8);
+  transition: color 0.12s;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.r-label,
+.r-format,
+.r-year {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .r-label { font-family:var(--mono); font-size:9px; color:var(--grey-5); letter-spacing:0.06em; }
 .r-format { font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:0.15em; color:var(--grey-5); }
 .r-year  { font-family:var(--mono); font-size:9px; color:var(--grey-5); }
 .r-arrow { font-size:12px; color:var(--grey-4); text-align:right; transition:color 0.12s, transform 0.12s; }
 .rel-row:hover .r-arrow { color:var(--white); transform:translateX(4px); }
+
+
+
+/* ─────────────────────────────────────────────
+   MIXES PHOTO SECTION
+───────────────────────────────────────────── */
+
+.mix-photo-section {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.mix-photo {
+  position: absolute;
+  inset: 0;
+  background-image: url('../Bandcamp2.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.3) contrast(1.4) grayscale(1);
+}
+
+.mix-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--black) 100%);
+}
+
+.mix-photo-text {
+  position: absolute;
+  bottom: 40px; left: 32px;
+  z-index: 2;
+}
+
+.mix-photo-text h1 {
+  font-family: var(--cond);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(40px, 8vw, 110px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
 
 /* ─────────────────────────────────────────────
    MIXES
@@ -868,7 +1003,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
 }
 
 .about-text-col {
-  padding: 48px 32px;
+  padding: 35px 32px;
   border-right: 1px solid var(--border);
 }
 
@@ -878,7 +1013,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
   font-size: 20px;
   line-height: 1.6;
   color: var(--grey-8);
-  max-width: 560px;
+  max-width: 700px;
   margin-bottom: 20px;
 }
 
@@ -1115,7 +1250,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
   .landing-grid { grid-template-columns: 1fr; }
   .landing-col { border-right: none; border-bottom: 1px solid var(--border); }
 
-  .rel-row { grid-template-columns: 36px 1fr 56px 28px; padding: 0 20px; }
+  .rel-row { grid-template-columns: 36px minmax(220px, 1.7fr) 86px 50px; padding: 0 20px; }
   .r-label, .r-format { display: none; }
 
   .mixes-grid { grid-template-columns: 1fr; }
