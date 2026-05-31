@@ -205,7 +205,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../IMG_4684.PNG.png');
+  background-image: url('../imgs/IMG_4684.PNG.png');
   background-size: cover;
   /* Mostrar el centro de la imagen: ajustar porcentaje para mover el recorte vertical */
   background-position: center center;
@@ -708,7 +708,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
 .release-photo {
   position: absolute;
   inset: 0;
-  background-image: url('../IMG_4680.png');
+  background-image: url('../imgs/IMG_4680.png');
   background-size: cover;
   background-position: center;
   filter: brightness(0.35) contrast(1.4) grayscale(1);
@@ -830,7 +830,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
 .mix-photo {
   position: absolute;
   inset: 0;
-  background-image: url('../Bandcamp2.jpg');
+  background-image: url('../imgs/Bandcamp2.jpg');
   background-size: cover;
   background-position: center;
   filter: brightness(0.3) contrast(1.4) grayscale(1);
@@ -966,7 +966,7 @@ body.cursor-hover #cursor::after  { height: 32px; }
 .about-photo {
   position: absolute;
   inset: 0;
-  background-image: url('../IMG_4687.jpg');
+  background-image: url('../imgs/IMG_4687.jpg');
   background-size: cover;
   background-position: center;
   filter: brightness(0.35) contrast(1.4) grayscale(1);
